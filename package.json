@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
@@ -58,6 +58,7 @@
     "next": "14.1.4",
     "next-themes": "^0.3.0",
     "npm": "^10.7.0",
+    "prisma": "^5.13.0",
     "react": "^18",
     "react-beautiful-dnd": "^13.1.1",
     "react-day-picker": "^8.10.0",
