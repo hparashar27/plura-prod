@@ -23,13 +23,6 @@ const Command = React.forwardRef<
 ))
 Command.displayName = CommandPrimitive.displayName
 
-interface CommandItemProps {
-  className?: string;
-  disabled?: boolean;
-  'aria-selected'?: boolean; // Define the aria-selected prop explicitly
-  // Add other props as needed
-}
-
 interface CommandDialogProps extends DialogProps {}
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
@@ -121,24 +114,19 @@ const CommandSeparator = React.forwardRef<
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName
 
 //CHANGED:
-const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
-  ({ className, disabled, 'aria-selected': ariaSelected, ...props }, ref) => (
-    <CommandPrimitive.Item
-      ref={ref}
-      className={cn(
-        'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-primary aria-selected:text-white aria-selected:font-bold',
-        {
-          'data-[disabled]:pointer-events-none': disabled,
-          'data-[disabled]:opacity-50': disabled,
-        },
-        className
-      )}
-      {...props}
-    />
-  )
-);
-
-
+const CommandItem = React.forwardRef<
+  React.ElementRef<typeof CommandPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <CommandPrimitive.Item
+    ref={ref}
+    className={cn(
+      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-primary aria-selected:text-white aria-selected:font-bold  data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      className
+    )}
+    {...props}
+  />
+))
 
 CommandItem.displayName = CommandPrimitive.Item.displayName
 
